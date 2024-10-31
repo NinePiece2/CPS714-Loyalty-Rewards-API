@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CPS714_Loyalty_Rewards_API.Models.Tables;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace CPS714_Loyalty_Rewards_API.Data
@@ -9,11 +10,17 @@ namespace CPS714_Loyalty_Rewards_API.Data
         {
         }
 
+        public DbSet<FeedbackFormData> FeedbackFormData { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            
+            builder.Entity<FeedbackFormData>(entity =>
+            {
+                entity.HasKey(e => e.ID);
+            });
+
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CPS714_Loyalty_Rewards_API.Models;
+using CPS714_Loyalty_Rewards_API.Models.Tables;
+using CPS714_Loyalty_Rewards_API.Data;
 
 namespace CPS714_Loyalty_Rewards_API.Controllers
 {
@@ -8,6 +10,12 @@ namespace CPS714_Loyalty_Rewards_API.Controllers
     [ApiController]
     public class DataController : ControllerBase
     {
+        private readonly LoyaltyRewardsDbContext _loyaltyRewardsDbContext;
+        public DataController(LoyaltyRewardsDbContext loyaltyRewardsDbContext)
+        {
+            _loyaltyRewardsDbContext = loyaltyRewardsDbContext;
+        }
+
         [HttpPost]
         [Route("SubmitFeedbackFormData")]
         public IActionResult SubmitFeedbackFormData([FromBody] FeedbackFormDataModel data)
@@ -17,7 +25,28 @@ namespace CPS714_Loyalty_Rewards_API.Controllers
                 return BadRequest("Invalid data.");
             }
 
-            
+            try
+            {
+                var newEntry = new FeedbackFormData
+                {
+                    Name = data.Name,
+                    Email = data.Email,
+                    PhoneNumber = data.PhoneNumber,
+                    Topic = data.Topic,
+                    Explanation = data.Explanation,
+                    CreatedAt = DateTime.Now,
+                    UserID = "1" // For testing needs to be changed when user authentication is implemented
+                };
+
+                _loyaltyRewardsDbContext.Add(newEntry);
+                _loyaltyRewardsDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the data: " + ex.ToString());
+            }
+
+
 
             return Ok(new { message = "Data received successfully!" });
         }
