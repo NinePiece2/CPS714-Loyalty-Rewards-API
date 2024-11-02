@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[FeedbackFormData](
+	[ID] INT PRIMARY KEY IDENTITY(1,1),
+	[UserID] NVARCHAR(100) NOT NULL,
+	[Name] NVARCHAR(100) NOT NULL,
+	[Email] NVARCHAR(255) NULL,
+	[PhoneNumber] NVARCHAR(15) NULL,
+	[Topic] NVARCHAR(50) NULL,
+	[Explanation] NVARCHAR(MAX) NULL,
+	[CreatedAt] DATETIME NULL
+);
