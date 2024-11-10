@@ -43,12 +43,18 @@ namespace CPS714_Loyalty_Rewards_API.Controllers
             }
             catch (Exception ex)
             {
-                    return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the data: " + ex.ToString());
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the data: " + ex.ToString());
             }
 
-
-
             return Ok(new { message = "Success!" });
+        }
+
+        [HttpGet]
+        [Route("GetFeedbackTopics")]
+        public IActionResult GetFeedbackTopics()
+        {
+            var topics = _loyaltyRewardsDbContext.FeedbackFormTopics.Select(x => x.Topic).ToList();
+            return Ok(topics);
         }
     }
 }

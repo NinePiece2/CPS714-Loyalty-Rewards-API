@@ -11,6 +11,7 @@ namespace CPS714_Loyalty_Rewards_API.Data
         }
 
         public DbSet<FeedbackFormData> FeedbackFormData { get; set; }
+        public DbSet<FeedbackFormTopics> FeedbackFormTopics { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -19,6 +20,11 @@ namespace CPS714_Loyalty_Rewards_API.Data
             builder.Entity<FeedbackFormData>(entity =>
             {
                 entity.HasKey(e => e.ID);
+            });
+
+            builder.Entity<FeedbackFormTopics>(entity =>
+            {
+                entity.HasKey(e => e.UID);
             });
 
         }
