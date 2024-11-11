@@ -12,5 +12,6 @@ namespace CPS714_Loyalty_Rewards_API.Models.Tables
         [Required]
         [MaxLength(250)]
         public string Topic { get; set; }
+
     }
 }
