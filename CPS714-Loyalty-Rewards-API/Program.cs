@@ -60,6 +60,11 @@ namespace CPS714_Loyalty_Rewards_API
                 app.UseSwagger(); 
                 app.UseSwaggerUI();
             }
+            else
+            {
+                app.UseSwagger(); // Temporary use swagger
+                app.UseSwaggerUI();
+            }
 
             app.UseHttpsRedirection();
 
