@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using CPS714_Loyalty_Rewards_API.Models;
 using CPS714_Loyalty_Rewards_API.Models.Tables;
 using CPS714_Loyalty_Rewards_API.Data;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CPS714_Loyalty_Rewards_API.Controllers
 {
+    [Authorize]
     [Route("/[controller]")]
     [ApiController]
     public class DataController : ControllerBase
