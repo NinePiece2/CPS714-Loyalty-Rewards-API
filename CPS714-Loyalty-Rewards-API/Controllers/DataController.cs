@@ -37,7 +37,7 @@ namespace CPS714_Loyalty_Rewards_API.Controllers
                     Topic = data.Topic,
                     Explanation = data.Explanation,
                     CreatedAt = DateTime.Now,
-                    UserID = data.UserID // For testing needs to be changed when user authentication is implemented
+                    UserID = data.UserID
                 };
 
                 _loyaltyRewardsDbContext.Add(newEntry);
@@ -89,7 +89,7 @@ namespace CPS714_Loyalty_Rewards_API.Controllers
                     InformedOfLatestRewards = surveyData.Informed,
                     RoomForImprovement = surveyData.Improvement,
                     CreatedAt = DateTime.Now,
-                    UserID = surveyData.UserID // For testing, change when user authentication is implemented
+                    UserID = surveyData.UserID
                 };
 
                 _loyaltyRewardsDbContext.Add(newEntry);
